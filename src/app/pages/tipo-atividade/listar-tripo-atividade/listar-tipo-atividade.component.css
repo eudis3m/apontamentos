@@ -1,0 +1,111 @@
+.tabelaListar {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.barraPesquisarListar {
+  font-size: 14px;
+  width: 70%;
+}
+
+.botaoRelatorio{
+  position: relative;
+  top: 0px;
+  left: 950px;
+  right: 0;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.colunaListar {
+  width: 30%;
+}
+
+.botaoSalvar {
+  margin: 10px;
+  width: 115px;
+  text-align: center;
+  border-radius: 20px;
+}
+.botaoNovo{
+  position: absolute;
+  right: 0;
+  border-radius: 20px;
+}
+
+.barraFerramentaListar{
+  background-color: rgb(255, 154, 71);
+  width: auto;
+  color: white;
+}
+
+.botaoEditarDeletar
+{
+  max-width: 40px;
+  min-width: 20px;
+  border-radius: 20px;
+}
+
+.mat-iconMenu {
+  background-repeat: no-repeat;
+  display: inline-block;
+  fill: currentColor;
+  height: 24px;
+  width: auto;
+  margin: -7px;
+}
+
+.alterRow{
+  background-color: #00BFFF;
+font-weight: bold;
+}
+
+body{
+font-family:sans-serif;  
+}
+
+.tabelaListar{
+width:100%;
+margin:0 auto;
+border:0;
+box-shadow: 0 5px 30px darkgrey;
+border-spacing: 0;
+}
+
+.tabelaListar thead th{
+font-weight: bold;
+background-color: rgb(255, 154, 71);
+color:white;
+
+padding:5px 10px;
+}
+
+.tabelaListar tr td{
+padding:5px 10px;
+text-align: center;
+
+cursor: pointer; /**importante para não mostrar cursor de texto**/
+}
+
+.tabelaListar tr td:last-child{
+text-align: right;
+}
+
+/**Cores**/
+.tabelaListar tr:nth-child(odd){
+background-color: #eee;
+}
+
+/**Cor quando passar por cima**/
+.tabelaListar tr:hover td{
+background-color: #feffb7;
+}
+
+/**Cor quando selecionado**/
+.tabelaListar tr.selecionado td{
+background-color: #aff7ff;
+}
+
+.size-card {
+width: 237px;
+}

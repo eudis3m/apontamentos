@@ -1,0 +1,102 @@
+<ng-snotify></ng-snotify>
+<ngx-spinner type="line-spin-fade" size="medium"></ngx-spinner>
+
+
+<mat-sidenav-container class="example-container" (backdropClick)="close('backdrop')" *ngIf="isLoggedIn | async">
+  <mat-sidenav #sidenav mode="over" (keydown.escape)="close('escape')" disableClose style="width: 300px" mode="over">
+    <mat-toolbar>
+      <img class="imgMenuHeader" src="/assets/images/logo_icon.png"/>
+      <span class="menuHeader">Projeto</span>
+    </mat-toolbar>
+
+    <mat-accordion displayMode="default" [multi]="true" [hideToggle]="false">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Cadastros
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-list role="list">
+          <mat-list-item (click)="close('toggle button')" routerLink="/listar-empresa" style="cursor: pointer">
+            Empresa
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item (click)="close('toggle button')" routerLink="/listar-apontamentos" style="cursor: pointer">
+            Apontamentos
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item (click)="close('toggle button')" routerLink="/listar-atividades" style="cursor: pointer">
+            Atividades
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item (click)="close('toggle button')" routerLink="/listar-centro-custo" style="cursor: pointer">
+            Centro Custo
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item (click)="close('toggle button')" routerLink="/listar-projetos" style="cursor: pointer">
+            Projetos
+          </mat-list-item>
+           <mat-divider></mat-divider>
+           <mat-list-item (click)="close('toggle button')" routerLink="/listar-recursos" style="cursor: pointer">
+            Recursos
+          </mat-list-item>
+           <mat-divider></mat-divider>
+           <mat-list-item (click)="close('toggle button')" routerLink="/listar-tipo-atividade" style="cursor: pointer">
+              Tipo Atividade
+          </mat-list-item>
+           <mat-divider></mat-divider>
+            <mat-list-item (click)="close('toggle button')" routerLink="/listar-usuario" style="cursor: pointer">
+                Usuarios
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </mat-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <!---mat-accordion displayMode="default" [multi]="true" [hideToggle]="false">
+       <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+              Cadastros
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+        <mat-list role="list">
+            <mat-list-item (click)="close('toggle button')" routerLink="/listar-empresa" style="cursor: pointer">
+              Empresa
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item (click)="close('toggle button')" routerLink="/listar-projetos" style="cursor: pointer">
+              Projetos
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item (click)="close('toggle button')" routerLink="/listar-recursos" style="cursor: pointer">
+              Recursos
+            </mat-list-item>
+            <mat-divider></mat-divider>
+
+          </mat-list>
+        </mat-expansion-panel>
+      </mat-accordion-->
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+
+    <mat-toolbar class="md-tall md-accent">
+      <button mat-button (click)="sidenav.open()" class="botaoMenu">
+        <mat-icon class="mat-iconMenu" aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <img class="png-icon" src="/assets/images/logo.png" routerLink="/home"/>
+      <button mat-button *ngIf="isLoggedIn" (click)="onLogout()" class="buttonLogout">Sair
+        <mat-icon>account_circle</mat-icon></button>
+    </mat-toolbar>
+
+    <router-outlet></router-outlet>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+
+
+<app-login></app-login>

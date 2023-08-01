@@ -1,0 +1,63 @@
+<mat-toolbar class="barraFerramenta">
+    <span class="barraFerramentaTexto" *ngIf="!editar">Atualizar Cadsatro</span>
+    <span class="barraFerramentaTexto" *ngIf="editar">Editar</span>
+  </mat-toolbar>
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" >
+  <mat-card class="tabelaCadastrar" >
+  <div >
+      <div>
+          <mat-form-field class="inserirCadastrar">
+            <mat-select placeholder="Selecionar Projetos" formControlName="nmProjetos" [(ngModel)]="atividades.nmProjetos">
+              <mat-option *ngFor="let atividades of listaProjetos" [value]="atividades.nmprojeto">
+                {{atividades.nmprojeto}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+         <div>
+          <mat-form-field class="inserirCadastrar">
+            <mat-select placeholder="Selecionar Recursos" formControlName="nmRecursos" [(ngModel)]="atividades.nmRecursos">
+              <mat-option *ngFor="let atividades of listaRecursos" [value]="atividades.nmrecursos">
+                {{atividades.nmrecursos}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+    
+         <tr>
+          <mat-form-field class="inserirCadastrar">
+            <input  matInput placeholder="Data Inicio" formControlName="dtInicio" type="date" [(ngModel)]="atividades.dtInicio" >
+            <mat-error *ngIf="formGroup.get('dtInicio').invalid">
+             A data de inicio é <strong>obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+        </tr> 
+
+        <tr>
+          <mat-form-field class="inserirCadastrar">
+            <input  matInput placeholder="Data Final" formControlName="dtFinal" type="date" [(ngModel)]="atividades.dtFinal" >
+            <mat-error *ngIf="formGroup.get('dtFinal').invalid">
+              A data final é <strong>obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+        </tr> 
+        <tr>
+          <mat-form-field class="inserirCadastrar">
+            <input  matInput placeholder="Horas da Atividade" formControlName="nrhorasAtividade" [(ngModel)]="atividades.nrhorasAtividade" >
+            <mat-error *ngIf="formGroup.get('nrhorasAtividade').invalid">
+             O número de horas da atividade é<strong>obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+        </tr>
+      <!---/p-table-->
+  </div>
+       <button mat-raised-button class="botaoSalvar">Salvar
+        <mat-icon class="mat-18">save</mat-icon>
+       </button>
+       <button mat-raised-button [mat-dialog-close] class="botaoSair" >Sair
+      </button>
+  </mat-card>
+  
+  </form>
+
+  

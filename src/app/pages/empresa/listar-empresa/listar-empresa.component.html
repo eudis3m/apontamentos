@@ -1,0 +1,84 @@
+<mat-toolbar class="barraFerramentaListar">
+  Empresa
+  </mat-toolbar>
+    <div class="component-margin">
+    <mat-card>
+  <!--mat-form-field class="barraPesquisarListar">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Pesquisar">
+  </mat-form-field-->
+  <div class="barraPesquisarListar">
+    <mat-form-field class="barraPesquisarListar">
+    <input matInput type="text" [(ngModel)]="searchField" pInputText placeholder="Pesquise por Nome, CNPJ">
+    </mat-form-field>
+    <button  mat-raised-button class="botaoSalvar" (click)="buscarDadosPagina(null)">Buscar
+    </button>
+    <button  mat-raised-button class="botaoSalvar" (click)="open()">Cadastrar
+    </button>
+  </div>
+  <div class="tabelaListar">
+          <div *ngIf="listarEmpresa?.length == 0">
+            <p>Não existe Empresa ativos.</p>
+          </div>
+          <p-table [columns]="cols" [value]="listarEmpresa" [lazy]="true" (onLazyLoad)="buscarEmpresa($event)"
+                   [paginator]="true" [rows]="linesPerPage" [totalRecords]="totalRecords" >
+            <ng-template pTemplate="header" let-columns>
+              <tr>
+                <th style="width: 200px;">Nome da Empresa</th>
+                <th>CNPJ</th>
+                <th style="width: 200px;">Telefone </th>
+                <th style="width: 200px;">Rua</th>
+                <th>Numero</th>
+                <th style="width: 200px;">Bairro</th>
+                <th style="width: 200px;">Cidade</th>
+                <th>Complemento</th>
+                <th style="width: 100px;">Ações</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData>
+              <tr>
+                <td class="font-column" style="word-break: break-all;">
+                    {{rowData?.nmempresa}}
+                  </td>
+                <td class="font-column">
+                  {{rowData?.nrcnpj | mask: '00.000.000/0000-00'}}
+                </td>
+                <td class="font-column" style="word-break: break-all;">
+                  {{rowData?.nrtelefone | mask: '(00)0000-0000'}}
+                </td>
+                <td class="font-column">
+                  {{rowData?.dsRua}}
+                </td>
+                <td class="font-column">
+                  {{rowData?.dsNumero}}
+                </td>
+                <td class="font-column">
+                  {{rowData?.dsBairro}}
+                </td>
+                <td class="font-column">
+                  {{rowData?.dsCidade}}
+                </td>
+                <td class="font-column">
+                  {{rowData?.dsComplemento}}
+                </td>
+                <td class="font-column" style="padding: 0px 0px;">
+                  <button mat-icon-button (click)="abrirDialogCadastrarEmpresa(rowData)">
+                    <!---i class="pi-pencil" style="font-size: 25px; color: #b9b9b9;"></i-->
+                    <i class="material-icons" style="font-size: 25px; color: #b9b9b9;">
+                      brush
+                      </i>
+                  </button>
+                  <button mat-icon-button (click)="abrirDialogDeletarEmpresa(rowData.oid)">
+                    <!--i class="pi pi-trash" style="font-size: 25px; color: #b9b9b9;"></i-->
+                    <i class="material-icons" style="font-size: 25px; color: #b9b9b9;">
+                      delete_outline
+                      </i>
+                  </button>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+
+          <p class="rodapeExibindo">Exibindo {{listarEmpresa?.length}} de {{totalRecords}}</p>
+      </div>
+    </mat-card>
+  </div>

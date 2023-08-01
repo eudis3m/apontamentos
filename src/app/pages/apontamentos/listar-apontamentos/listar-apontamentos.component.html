@@ -1,0 +1,72 @@
+<mat-toolbar class="barraFerramentaListar">
+    Apontamentos
+    </mat-toolbar>
+      <div class="component-margin">
+      <mat-card OnUnload="destroy()">
+    <!--mat-form-field class="barraPesquisarListar">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Pesquisar">
+    </mat-form-field-->
+    <div class="barraPesquisarListar">
+      <mat-form-field class="barraPesquisarListar">
+      <input matInput type="text" [(ngModel)]="searchField" pInputText placeholder="Pesquise por Nome da Atividade">
+      </mat-form-field>
+      <button  mat-raised-button class="botaoSalvar" (click)="buscarDadosPagina(null)">Buscar
+      </button>
+      <button  mat-raised-button class="botaoSalvar" (click)="open()">Cadastrar
+      </button>
+    </div>
+    <div class="tabelaListar">
+            <div *ngIf="listarApontamentos?.length == 0">
+              <p>Não existe Apontamento ativos.</p>
+            </div>
+            <p-table [columns]="cols" [value]="listarApontamentos" [lazy]="true" (onLazyLoad)="buscarApontamentos($event)"
+                     [paginator]="true" [rows]="linesPerPage" [totalRecords]="totalRecords" >
+              <ng-template pTemplate="header" let-columns>
+                <tr>
+                  <th>Nome da Atividade</th>
+                  <th>Data de Apontamento</th>
+                  <th>Data de Lançamento</th>
+                  <th>Numero de Horas Apontadas</th>
+                  <th>Valor Atividade</th>
+                  <th style="width: 80px;">Ações</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData>
+                <tr>
+                    <td class="font-column" style="word-break: break-all;">
+                        {{rowData?.nmRecursos}}
+                      </td>
+                  <td class="font-column" style="word-break: break-all;">
+                      {{rowData?.dtapontamento | date:'dd/MM/yyyy'}}
+                    </td>
+                  <td class="font-column">
+                    {{rowData?.dtlancamento | date:'dd/MM/yyyy'}}
+                  </td>
+                  <td class="font-column" style="word-break: break-all;">
+                    {{rowData?.nrapontamento}}
+                  </td>
+                  <td class="font-column" style="word-break: break-all;">
+                      {{rowData?.vratividade | currency:'BRL'}}
+                    </td>
+                  <td class="font-column" style="padding: 0px 0px;">
+                    <button mat-icon-button (click)="abrirDialogCadastrarApontamentos(rowData)">
+                      <!--i class="pi pi-pencil" style="font-size: 25px; color: #b9b9b9;"></i-->
+                      <i class="material-icons" style="font-size: 25px; color: #b9b9b9;">
+                        brush
+                        </i>
+                    </button>
+                    <button mat-icon-button (click)="abrirDialogDeletarApontamentos(rowData.oid)">
+                      <!---i class="pi pi-trash" style="font-size: 25px; color: #b9b9b9;"></i-->
+                      <i class="material-icons" style="font-size: 25px; color: #b9b9b9;">
+                        delete_outline
+                        </i>
+                    </button>
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+  
+            <p class="rodapeExibindo">Exibindo {{listarApontamentos?.length}} de {{totalRecords}}</p>
+        </div>
+      </mat-card>
+    </div>

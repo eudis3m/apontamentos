@@ -1,0 +1,72 @@
+<mat-sidenav-container class="example-container" (backdropClick)="close('backdrop')" *ngIf="isLoggedIn | async">
+  <mat-sidenav #sidenav (keydown.escape)="close('escape')" disableClose>
+  <div class="mdl-typography--headline">
+      <img class="png-icon" src="/assets/images/logoPrincipal.png"
+      style="max-width: 20%; min-width: 20%;">Projetos</div>
+
+    <!---button mat-button (click)="teste()">Bancos - bancos</button-->
+
+    <!--Botões no side nav-->
+    <button id="buttonbar" mat-button [matMenuTriggerFor]="menuCadastro">Cadastros</button>
+  <mat-menu #menuCadastro="matMenu">
+   <button mat-menu-item routerLink="/empresa">Empresa</button>
+    <button mat-menu-item routerLink="/centro-custo">Centro Custo</button>
+    <button mat-menu-item routerLink="/projetos">Projetos</button>
+    <button mat-menu-item routerLink="/tipo-atividaes">Tipo Atividades</button>
+    <button mat-menu-item routerLink="/usuario">Usuários</button>
+    <button mat-menu-item routerLink="/recursos">Recursos</button>
+    <button mat-menu-item routerLink="/atividades">Atividades</button>
+    <button mat-menu-item routerLink="/apontamentos">Apontamentos</button>
+  </mat-menu>
+
+  <button  mat-button [matMenuTriggerFor]="menuCadastro">Listar</button>
+  <mat-menu #menuCadastro="matMenu">
+   <button mat-menu-item routerLink="/empresa">Empresa</button>
+    <button mat-menu-item routerLink="/centro-custo">Centro Custo</button>
+    <button mat-menu-item routerLink="/projetos">Projetos</button>
+    <button mat-menu-item routerLink="/tipo-atividaes">Tipo Atividades</button>
+    <button mat-menu-item routerLink="/usuario">Usuários</button>
+    <button mat-menu-item routerLink="/recursos">Recursos</button>
+    <button mat-menu-item routerLink="/atividades">Atividades</button>
+    <button mat-menu-item routerLink="/apontamentos">Apontamentos</button>
+  </mat-menu>
+
+   <!--Botaão Pagamento
+   <button mat-button [matMenuTriggerFor]="menuPagar">Pagar</button>
+   <mat-menu #menuPagar="matMenu">
+     <button mat-menu-item routerLink="/listar-pagamento">Pagamento</button>
+     <button mat-menu-item>Desfazer Pagamento</button>
+   </mat-menu>
+-->
+    <!--Botão Receber-
+  <button mat-button [matMenuTriggerFor]="menuReceber">Receber</button>
+  <mat-menu #menuReceber="matMenu">
+    <button mat-menu-item>Contas à Receber</button>
+    <button mat-menu-item>Projeção de Recebimento</button>
+    <button mat-menu-item>Efetuar Recebimento</button>
+    <button mat-menu-item>Desfazer Recebimento</button>
+  </mat-menu>
+  
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar class="md-tall md-accent">
+      <button mat-button (click)="sidenav.open()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <img class="png-icon" src="/assets/images/logoPrincipal.png"
+      style="max-width:    100%; min-width: 100%;">
+      <button mat-button *ngIf="isLoggedIn" (click)="onLogout()">Logout</button>
+    
+       <BotaÃ£o Pagameno>
+      <button id="buttonbar" mat-button [matMenuTriggerFor]="menuCadastro">Cadastros</button>
+      <mat-menu #menuCadastro="matMenu">
+        <button mat-menu-item routerLink="./listar-bancos">Bancos</button>
+        <button mat-menu-item routerLink="/central-custos">Central Custos</button>
+        <button mat-menu-item routerLink="/listar-tipos-titulos">Tipos Títulos</button>
+        <button mat-menu-item routerLink="/listar-clientes">Clientes</button>
+        <button mat-menu-item routerLink="/listar-usuarios">Usuários</button>
+      </mat-menu>
+    
+    </mat-toolbar>
+  </mat-sidenav-content>
+</mat-sidenav-container-->

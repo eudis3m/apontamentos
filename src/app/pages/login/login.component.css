@@ -1,0 +1,71 @@
+.content {
+  position: absolute;
+  overflow: auto;
+  margin: -8px;
+  background-color: #ffffff !important;
+  background-color: whitesmoke;
+  -webkit-background-size: cover !important; /* For WebKit*/
+  -moz-background-size: cover !important;    /* Mozilla*/
+  -o-background-size: cover !important;      /* Opera*/
+  background-size: cover !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.nomeLogin {
+  color: rgb(142, 144, 144); /*rgb(247,98,1);*/ /* #6d6565;*/
+ /*font-family: Open Sans,"Helvetica Neue",Helvetica,Arial,sans-serif;*/
+  font-weight: 700;
+  font-size: 30px;
+  margin: 60px;
+  /*text-shadow: 1px 2px 4px #977b7b;*/
+}
+
+.mat-card {
+  max-width: 400px; 
+  min-width: 200px;
+  margin: 2em auto;
+  text-align: center;
+  background-color: #ffffff;
+  border-color: #c2bfbf;
+
+  background-color: whitesmoke;
+  background-repeat: no-repeat;
+  background-size: 90px;
+  border-radius: 5px;
+
+}
+
+button.mat-warnibrowse {
+  background-color: rgb(247,98,1) /* #ee6149*/;
+  color: #fff;
+}
+
+.signin-content {
+  /*padding: 60px 1rem;*/
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 400px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.full-width-input {
+  width: 100%;
+}
+.botaoNovo{
+  border-radius: 20px;
+}
+
+.imgMenuHeader{
+  height: 40px;
+  width: 50px;
+  margin: -8px;
+  
+}
+
+/* Button 
+.mat-raised-button {
+    max-width: 130px;
+  }
+*/

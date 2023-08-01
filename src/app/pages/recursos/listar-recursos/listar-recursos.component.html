@@ -1,0 +1,60 @@
+<mat-toolbar class="barraFerramentaListar">
+    Recursos
+    </mat-toolbar>
+      <div class="component-margin">
+      <mat-card>
+    <!--mat-form-field class="barraPesquisarListar">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Pesquisar">
+    </mat-form-field-->
+    <div class="barraPesquisarListar">
+      <mat-form-field class="barraPesquisarListar">
+      <input matInput type="text" [(ngModel)]="searchField" pInputText placeholder="Nome do recurso">
+      </mat-form-field>
+      <button  mat-raised-button class="botaoSalvar" (click)="buscarDadosPagina(null)">Buscar
+      </button>
+      <button  mat-raised-button class="botaoSalvar" (click)="open()">Cadastrar
+      </button>
+    </div>
+    <div class="tabelaListar">
+            <div *ngIf="listarRecursos?.length == 0">
+              <p>Não existe Recursos ativos.</p>
+            </div>
+            <p-table [columns]="cols" [value]="listarRecursos" [lazy]="true" (onLazyLoad)="buscarRecursos($event)"
+                     [paginator]="true" [rows]="linesPerPage" [totalRecords]="totalRecords" >
+              <ng-template pTemplate="header" let-columns>
+                <tr>
+                  <th style="width: 200px;">OID Recurso</th>
+                  <th>Nome do recurso</th>
+                  <th style="width: 90px;">Ações</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData>
+                <tr>
+                  <td class="font-column" style="word-break: break-all;">
+                      {{rowData?.oid}}
+                    </td>
+                  <td class="font-column">
+                    {{rowData?.nmrecursos}}
+                  </td>
+                  <td class="font-column" style="padding: 0px 0px;">
+                    <button mat-icon-button (click)="abrirDialogCadastrarRecursos(rowData)">
+                      <!---i class="pi pi-pencil" style="font-size: 25px; color: #b9b9b9;"></i-->
+                      <i class="material-icons" style="font-size: 25px; color: #b9b9b9;">
+                        brush
+                        </i>
+                    </button>
+                    <button mat-icon-button (click)="abrirDialogDeletarRecursos(rowData.oid)">
+                      <!---i class="pi pi-trash" style="font-size: 25px; color: #b9b9b9;"></i-->
+                      <i class="material-icons" style="font-size: 25px; color: #b9b9b9;">
+                        delete_outline
+                        </i>
+                    </button>
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+  
+            <p class="rodapeExibindo">Exibindo {{listarRecursos?.length}} de {{totalRecords}}</p>
+        </div>
+      </mat-card>
+    </div>

@@ -1,0 +1,68 @@
+<mat-toolbar class="barraFerramenta">
+    <span class="barraFerramentaTexto" *ngIf="!editar">Atualizar Cadsatro</span>
+    <span class="barraFerramentaTexto" *ngIf="editar">Editar</span>
+  </mat-toolbar>
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" >
+  <mat-card class="tabelaCadastrar" >
+  <div>
+         <tr>
+          <mat-form-field class="inserirCadastrar">
+            <input  matInput placeholder="Nome do Projeto*" formControlName="nmprojeto" [(ngModel)]="projetos.nmprojeto"  >
+            <mat-error *ngIf="formGroup.get('nmprojeto').invalid">
+             O nome do Projeto é <strong>obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+        </tr>
+         <tr>
+          <mat-form-field class="inserirCadastrar">
+            <input  matInput placeholder="data de inicio" type="date" formControlName="dtprojetoInicio" [(ngModel)]="projetos.dtprojetoInicio" >
+            <mat-error *ngIf="formGroup.get('dtprojetoInicio').invalid">
+             A data de inicio do projeto é <strong>obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+        </tr>
+        <tr>
+          <mat-form-field class="inserirCadastrar">
+            <input  matInput placeholder="data de Finalização" type="date" formControlName="dtprojetoFinal" [(ngModel)]="projetos.dtprojetoFinal" >
+            <mat-error *ngIf="formGroup.get('dtprojetoFinal').invalid">
+             A data de Finalização do projeto é <strong>obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+        </tr>
+      <tr>
+       <mat-form-field class="inserirCadastrar">
+         <input  matInput placeholder="Descrição do Projeto" formControlName="dsdescricaoProjeto" [(ngModel)]="projetos.dsdescricaoProjeto" >
+         <mat-error *ngIf="formGroup.get('dsdescricaoProjeto').invalid">
+         A Descrição é <strong>obrigatório</strong>
+         </mat-error>
+       </mat-form-field>
+     </tr> 
+     <div>
+        <mat-form-field class="inserirCadastrar">
+          <mat-select placeholder="Selecionar Empresa" formControlName="nmEmpresa" [(ngModel)]="projetos.nmEmpresa">
+            <mat-option *ngFor="let projetos of listaEmpresa" [value]="projetos.nmempresa">
+              {{projetos.nmempresa}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+       <div>
+        <mat-form-field class="inserirCadastrar">
+          <mat-select placeholder="Selecionar Valor Aprovado" formControlName="vrcustoAprovado" [(ngModel)]="projetos.vrcustoAprovado" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
+            <mat-option *ngFor="let projetos of listaCentroCusto" [value]="projetos.vrcustoAprovado">
+                {{projetos.vrcustoAprovado | currency:'BRL'}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+  </div>
+       <button mat-raised-button class="botaoSalvar">Salvar
+        <mat-icon class="mat-18">save</mat-icon>
+       </button>
+       <button mat-raised-button [mat-dialog-close] class="botaoSair" >Sair
+      </button>
+  </mat-card>
+  
+  </form>
+
+  

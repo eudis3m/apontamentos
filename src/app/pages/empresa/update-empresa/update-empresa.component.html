@@ -1,0 +1,81 @@
+<mat-toolbar class="barraFerramenta">
+    <span class="barraFerramentaTexto" *ngIf="!editar">Cadastrar</span>
+    <span class="barraFerramentaTexto" *ngIf="editar">Editar</span>
+  </mat-toolbar>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="formularioCadastrar">
+  <mat-card class="tabelaCadastrar">
+  <div>
+         <tr>
+          <mat-form-field class="inserirCadastrar">
+            <input matInput placeholder="Nome da Empresa" formControlName="nmempresa" [(ngModel)]="empresa.nmempresa">
+            <mat-error *ngIf="registerForm.get('nmempresa').errors?.required">
+             O nome da Empresa <strong>obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+        </tr>
+        <tr>
+          <mat-form-field class="inserirCadastrar">
+            <input matInput placeholder="Numero do CNPJ" mask="00.000.000/0000-00" formControlName="nrcnpj" [(ngModel)]="empresa.nrcnpj">
+            <mat-error *ngIf="registerForm.get('nrcnpj').errors?.required">
+             O número do CNPJ <strong>obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+        </tr>
+         <tr>
+          <mat-form-field class="inserirCadastrar">
+            <input matInput placeholder="Numero do Telefone" mask="(00)0000-0000" formControlName="nrtelefone" [(ngModel)]="empresa.nrtelefone">
+            <mat-error *ngIf="registerForm.get('nrtelefone').errors?.required">
+             O número do Telefone <strong>obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+        </tr>
+        <div class="ui-g"> 
+          <mat-form-field class="inserirRua">
+            <input matInput placeholder="Rua" formControlName="dsRua" [(ngModel)]="empresa.dsRua">
+            <mat-error *ngIf="registerForm.get('dsRua').errors?.required">
+             A Rua é <strong>obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+        <a>
+          <mat-form-field>
+            <input matInput placeholder="Numero" formControlName="dsNumero" [(ngModel)]="empresa.dsNumero">
+            <mat-error *ngIf="registerForm.get('dsNumero').errors?.required">
+             O Número é <strong>obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+        </a>
+   </div>
+        <tr>
+          <mat-form-field class="inserirCadastrar">
+            <input matInput placeholder="Bairro" formControlName="dsBairro" [(ngModel)]="empresa.dsBairro">
+            <mat-error *ngIf="registerForm.get('dsBairro').errors?.required">
+             O Bairro é <strong>obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+        </tr> 
+        <tr>
+          <mat-form-field class="inserirCadastrar">
+            <input matInput placeholder="Cidade" formControlName="dsCidade" [(ngModel)]="empresa.dsCidade">
+            <mat-error *ngIf="registerForm.get('dsCidade').errors?.required">
+             cidade é <strong>obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+        </tr>
+        <tr>
+          <mat-form-field class="inserirCadastrar">
+            <input disable="registerForm.invalid"class="inserirCadastrar"  matInput placeholder="Complemento" formControlName="dsComplemento" [(ngModel)]="empresa.dsComplemento">
+            <!--span *ngIf="registerForm.get('dscomplemento').invalid"></span>
+            <!--mat-error *ngIf="registerForm.get('dscomplemento').invalid">
+             Complemento é <strong>obrigatório</strong>
+            </mat-error-->
+          </mat-form-field>
+        </tr>
+  </div>
+       <button mat-raised-button class="botaoSalvar">Salvar
+        <mat-icon class="mat-18">save</mat-icon>
+       </button>
+       <button mat-raised-button [mat-dialog-close] class="botaoSair" >Sair
+      </button>
+  </mat-card>
+  </form>
+   

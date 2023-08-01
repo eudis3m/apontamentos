@@ -1,0 +1,49 @@
+<mat-toolbar class="barraFerramenta">
+  <span class="barraFerramentaTexto" *ngIf="!editar">Cadastrar</span>
+  <span class="barraFerramentaTexto" *ngIf="editar">Editar</span>
+</mat-toolbar>
+
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="formularioCadastrar">
+ <mat-card class="tabelaCadastrar">
+    <div>
+        <div>
+            <mat-form-field class="inserirCadastrar">
+              <mat-select placeholder="Selecionar Projeto" formControlName="nmprojeto" [(ngModel)]="centrocusto.nmprojeto">
+                <mat-option *ngFor="let centrocusto of listaProjetos" [value]="centrocusto.nmprojeto">
+                  {{centrocusto.nmprojeto}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        <tr>
+        <mat-form-field class="inserirCadastrar">
+          <input matInput placeholder="Custo previsto" formControlName="vrcustoPrevisto" [(ngModel)]="centrocusto.vrcustoPrevisto" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
+          <mat-error *ngIf="registerForm.get('vrcustoPrevisto').invalid">
+           O Valor do Custo Previsto é <strong>Obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </tr>
+        <tr>
+        <mat-form-field class="inserirCadastrar">
+          <input matInput placeholder="Custo Aprovado" formControlName="vrcustoAprovado" [(ngModel)]="centrocusto.vrcustoAprovado" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
+          <mat-error *ngIf="registerForm.get('vrcustoAprovado').invalid">
+           O Valor do Custo Aprovado é <strong>Obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </tr>
+       <tr>
+        <mat-form-field class="inserirCadastrar">
+          <input matInput placeholder="Descrição do Custo" formControlName="dscentroCusto" [(ngModel)]="centrocusto.dscentroCusto">
+          <mat-error *ngIf="registerForm.get('dscentroCusto').invalid">
+           A descrição do Custo é <strong>Obrigatrio</strong>
+          </mat-error>
+        </mat-form-field>
+      </tr>
+          </div> 
+    <button mat-raised-button class="botaoSalvar">Salvar
+      <mat-icon class="mat-18">save</mat-icon>
+    </button>
+    <button mat-raised-button [mat-dialog-close] class="botaoSair" >Sair
+    </button>
+    </mat-card>
+    </form>

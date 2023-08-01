@@ -1,0 +1,53 @@
+<mat-toolbar class="barraFerramenta">
+    <span class="barraFerramentaTexto" *ngIf="!editar">Atualizar Cadsatro</span>
+    <span class="barraFerramentaTexto" *ngIf="editar">Editar</span>
+  </mat-toolbar>
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" >
+  <mat-card class="tabelaCadastrar" >
+  <div >
+      <div>
+          <mat-form-field class="inserirCadastrar">
+            <mat-select placeholder="Selecionar Projeto" formControlName="nmprojeto" [(ngModel)]="centrocusto.nmprojeto" >
+              <mat-option *ngFor="let centrocusto of listaProjetos" [value]="centrocusto.nmprojeto">
+                {{centrocusto.nmprojeto}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+         <tr>
+          <mat-form-field class="inserirCadastrar">
+            <input  matInput placeholder="Custo Aprovado*" formControlName="vrcustoAprovado" [(ngModel)]="centrocusto.vrcustoAprovado" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
+            <mat-error *ngIf="formGroup.get('vrcustoAprovado').invalid">
+             O Custo Aprovado é <strong>obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+        </tr>
+        <tr>
+          <mat-form-field class="inserirCadastrar">
+            <input  matInput placeholder="Custo Previsto" formControlName="vrcustoPrevisto" [(ngModel)]="centrocusto.vrcustoPrevisto" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
+            <mat-error *ngIf="formGroup.get('vrcustoPrevisto').invalid">
+             O Custo Previsto é <strong>obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+        </tr>
+
+        <tr> 
+          <mat-form-field class="inserirCadastrar">
+            <input  matInput placeholder="Descriçao" formControlName="dscentroCusto" [(ngModel)]="centrocusto.dscentroCusto" >
+            <mat-error *ngIf="formGroup.get('dscentroCusto').invalid">
+             A descrição do custo é <strong>obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+        </tr>
+
+  </div>
+       <button mat-raised-button class="botaoSalvar">Salvar
+        <mat-icon class="mat-18">save</mat-icon>
+       </button>
+       <button mat-raised-button [mat-dialog-close] class="botaoSair" >Sair
+      </button>
+  </mat-card>
+  
+  </form>
+
+  

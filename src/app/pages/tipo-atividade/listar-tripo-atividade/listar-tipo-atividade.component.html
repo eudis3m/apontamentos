@@ -1,0 +1,64 @@
+<mat-toolbar class="barraFerramentaListar">
+   Tipo de Atividade
+    </mat-toolbar>
+      <div class="component-margin">
+      <mat-card>
+    <!--mat-form-field class="barraPesquisarListar">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Pesquisar">
+    </mat-form-field-->
+    <div class="barraPesquisarListar">
+      <mat-form-field class="barraPesquisarListar">
+      <input matInput type="text" [(ngModel)]="searchField" pInputText placeholder="Tipo de Atividade">
+      </mat-form-field>
+      <button  mat-raised-button class="botaoSalvar" (click)="buscarDadosPagina(null)">Buscar
+      </button>
+      <button  mat-raised-button class="botaoSalvar" (click)="open()">Cadastrar
+      </button>
+    </div>
+    <div class="tabelaListar">
+            <div *ngIf="listarTipoAtividade?.length == 0">
+              <p>Não existe Tipo de Atividade ativos.</p>
+            </div>
+            <p-table [columns]="cols" [value]="listarTipoAtividade" [lazy]="true" (onLazyLoad)="buscarTipoAtividade($event)"
+                     [paginator]="true" [rows]="linesPerPage" [totalRecords]="totalRecords" >
+              <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th>OID Atividade</th>
+                  <th style="width: 200px;">Tipo de Atividade</th>
+                  <th>Valor da Atividade</th>
+                  <th style="width: 80px;">Ações</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData>
+                <tr>
+                  <td class="font-column" style="word-break: break-all;">
+                      {{rowData?.oid}}
+                    </td>
+                  <td class="font-column">
+                    {{rowData?.nmtipoAtividade}}
+                  </td>
+                  <td class="font-column">
+                      {{rowData?.vratividade | currency:'BRL'}}
+                    </td>
+                  <td class="font-column" style="padding: 0px 0px;">
+                    <button mat-icon-button (click)="abrirDialogCadastrarTipoAtividade(rowData)">
+                      <!---i class="pi pi-pencil" style="font-size: 25px; color: #b9b9b9;"></i-->
+                      <i class="material-icons" style="font-size: 25px; color: #b9b9b9;">
+                        brush
+                        </i>
+                    </button>
+                    <button mat-icon-button (click)="abrirDialogDeletarTipoAtividade(rowData.oid)">
+                      <!--i class="pi pi-trash" style="font-size: 25px; color: #b9b9b9;"></i-->
+                      <i class="material-icons" style="font-size: 25px; color: #b9b9b9;">
+                        delete_outline
+                        </i>
+                    </button>
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+  
+            <p class="rodapeExibindo">Exibindo {{listarTipoAtividade?.length}} de {{totalRecords}}</p>
+        </div>
+      </mat-card>
+    </div>

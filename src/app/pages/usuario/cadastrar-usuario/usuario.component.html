@@ -1,0 +1,68 @@
+<mat-toolbar class="barraFerramenta">
+  <span class="barraFerramentaTexto" *ngIf="!editar">Cadastrar</span>
+  <span class="barraFerramentaTexto" *ngIf="editar">Editar</span>
+</mat-toolbar>
+
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="formularioCadastrar">
+
+  <mat-card class="tabelaCadastrar">
+    <div>
+      <tr>
+        <mat-form-field class="inserirCadastrar">
+          <input matInput placeholder="Nome do Usuario" formControlName="nmusuario" [(ngModel)]="usuario.nmusuario">
+          <mat-error *ngIf="formGroup.get('nmusuario').errors?.required">
+           O nome do Usuario é <strong>Obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </tr>
+      <tr>
+        <mat-form-field class="inserirCadastrar">
+          <input matInput placeholder="Numero do  CPF" mask="000.000.000-00" formControlName="nrcpf" [(ngModel)]="usuario.nrcpf">
+          <mat-error *ngIf="formGroup.get('nrcpf').errors?.required">
+           O numero do CPF é <strong>Obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </tr>
+      <tr>
+        <mat-form-field class="inserirCadastrar">
+          <input  matInput placeholder="Login do Usuario" formControlName="dsLogin" [(ngModel)]="usuario.dsLogin">
+          <mat-error *ngIf="formGroup.get('dsLogin').errors?.required">
+           Login é <strong>Obrigatório</strong>
+          </mat-error>
+          <mat-error *ngIf="formGroup.get('dsLogin').errors?.dsloginValid">
+            Este Login é inválido
+          </mat-error>
+          <mat-error *ngIf="formGroup.get('dsLogin').errors?.dsloginExists">
+            Login já cadastrado na base de dados
+          </mat-error>
+        </mat-form-field>
+      </tr>
+       <tr>
+        <mat-form-field class="inserirCadastrar">
+          <input type="password" id="pass" matInput placeholder="Senha do Usuario" formControlName="dssenha" [(ngModel)]="usuario.dssenha">
+          <mat-error *ngIf="formGroup.get('dssenha').errors?.required">
+           Senha é <strong>Obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </tr>
+
+      <div>
+        <mat-form-field class="inserirCadastrar">
+          <mat-select placeholder="Selecionar Recursos" formControlName="nmRecursos" [(ngModel)]="usuario.nmRecursos">
+            <mat-option *ngFor="let usuario of listaRecursos" [value]="usuario.nmrecursos">
+              {{usuario.nmrecursos}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+       </div>
+    <button mat-raised-button class="botaoSalvar">Salvar
+      <mat-icon class="mat-18">save</mat-icon>
+    </button>
+    <button mat-raised-button [mat-dialog-close] class="botaoSair" >Sair
+    </button>
+    </mat-card>
+
+</form>
+      

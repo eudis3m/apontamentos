@@ -1,0 +1,26 @@
+<mat-toolbar class="barraFerramenta">
+  <span class="barraFerramentaTexto" *ngIf="!editar">Cadastrar</span>
+  <span class="barraFerramentaTexto" *ngIf="editar">Editar</span>
+</mat-toolbar>
+
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="formularioCadastrar">
+
+  <mat-card class="tabelaCadastrar">
+     <div>
+     <tr>
+        <mat-form-field class="inserirCadastrar">
+          <input matInput placeholder="Nome do Recurso" formControlName="nmrecursos" [(ngModel)]="recursos.nmrecursos">
+          <mat-error *ngIf="formGroup.get('nmrecursos').invalid">
+           O nome do Recurso é <strong>Obrigatório</strong>
+          </mat-error>
+        </mat-form-field>
+      </tr>
+        </div>
+    <button mat-raised-button class="botaoSalvar">Salvar
+      <mat-icon class="mat-18">save</mat-icon>
+    </button>
+    <button mat-raised-button [mat-dialog-close] class="botaoSair" >Sair
+    </button>
+    </mat-card>
+
+</form>

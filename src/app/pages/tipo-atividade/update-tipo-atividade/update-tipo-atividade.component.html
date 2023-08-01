@@ -1,0 +1,44 @@
+<mat-toolbar class="barraFerramenta">
+    <span class="barraFerramentaTexto" *ngIf="!editar">Atualizar Cadsatro</span>
+    <span class="barraFerramentaTexto" *ngIf="editar">Editar</span>
+  </mat-toolbar>
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" >
+  <mat-card class="tabelaCadastrar" >
+  <div >
+      <!---p-table id="tabelaempresa" [value]="listaempresa"-->
+      <!--tr>
+          <mat-form-field class="inserirCadastrar">
+            <input  matInput name="oidempresa" placeholder="ID da Empresa" formControlName="oidempresa" [(ngModel)]="empresa.oidempresa">
+            <mat-error *ngIf="formGroup.get('oidempresa').invalid">
+             ID da Empresa <strong>obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+        </tr-->
+   
+         <tr>
+          <mat-form-field class="inserirCadastrar">
+            <input  matInput placeholder="Tipo de Atividade*" formControlName="nmtipoAtividade" [(ngModel)]="tiposAtividades.nmtipoAtividade"  >
+            <mat-error *ngIf="formGroup.get('nmtipoAtividade').invalid">
+             O Nome do Tipo de Atividade é <strong>obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+        </tr>
+        <tr>
+          <mat-form-field class="inserirCadastrar">
+            <input  matInput placeholder="Valor da Atividade" formControlName="vratividade" [(ngModel)]="tiposAtividades.vratividade" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
+            <mat-error *ngIf="formGroup.get('vratividade').invalid">
+             O Valor da Atividade <strong>obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+        </tr>
+  </div>
+       <button mat-raised-button class="botaoSalvar">Salvar
+        <mat-icon class="mat-18">save</mat-icon>
+       </button>
+       <button mat-raised-button [mat-dialog-close] class="botaoSair" >Sair
+      </button>
+  </mat-card>
+  
+  </form>
+
+  

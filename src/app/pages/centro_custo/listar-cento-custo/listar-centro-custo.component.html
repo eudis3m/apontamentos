@@ -1,0 +1,68 @@
+<mat-toolbar class="barraFerramentaListar">
+ Centro Custo
+  </mat-toolbar>
+    <div class="component-margin">
+    <mat-card>
+  <!--mat-form-field class="barraPesquisarListar">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Pesquisar">
+  </mat-form-field-->
+  <div class="barraPesquisarListar">
+    <mat-form-field class="barraPesquisarListar">
+    <input matInput type="text" [(ngModel)]="searchField" pInputText placeholder="Pesquisar por Nome do Projeto">
+    </mat-form-field>
+    <button  mat-raised-button class="botaoSalvar" (click)="buscarDadosPagina(null)">Buscar
+    </button>
+    <button  mat-raised-button class="botaoSalvar" (click)="open()">Cadastrar
+    </button>
+  </div>
+  <div class="tabelaListar">
+          <div *ngIf="listarCentroCusto?.length == 0">
+            <p>Não existe Custo ativos.</p>
+          </div>
+          <p-table [columns]="cols" [value]="listarCentroCusto" [lazy]="true" (onLazyLoad)="buscarCentroCusto($event)"
+                   [paginator]="true" [rows]="linesPerPage" [totalRecords]="totalRecords" >
+            <ng-template pTemplate="header" let-columns>
+              <tr>
+                <th>Nome do Projeto</th>
+                <th>Custo Previsto</th>
+                <th>Custo Aprovado</th>
+                <th>Descrição</th>
+                <th style="width: 80px;">Ações</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData>
+              <tr>
+                <td class="font-column" style="word-break: break-all;">
+                    {{rowData?.nmprojeto}}
+                  </td>
+                <td class="font-column">
+                  {{rowData?.vrcustoPrevisto | currency:'BRL'}}
+                </td>
+                <td class="font-column" style="word-break: break-all;">
+                  {{rowData?.vrcustoAprovado | currency:'BRL'}}
+                </td>
+                <td class="font-column" style="word-break: break-all;">
+                    {{rowData?.dscentroCusto}}
+                  </td>
+                <td class="font-column" style="padding: 0px 0px;">
+                  <button mat-icon-button (click)="abrirDialogCadastrarCentroCusto(rowData)">
+                    <!--i class="pi pi-pencil" style="font-size: 25px; color: #b9b9b9;"></i-->
+                    <i class="material-icons" style="font-size: 25px; color: #b9b9b9;">
+                      brush
+                      </i>
+                  </button>
+                  <button mat-icon-button (click)="abrirDialogDeletarCentroCusto(rowData.oid)">
+                    <!--i class="pi pi-trash" style="font-size: 25px; color: #b9b9b9;"></i-->
+                    <i class="material-icons" style="font-size: 25px; color: #b9b9b9;">
+                      delete_outline
+                      </i>
+                  </button>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+
+          <p class="rodapeExibindo">Exibindo {{listarCentroCusto?.length}} de {{totalRecords}}</p>
+      </div>
+    </mat-card>
+  </div>

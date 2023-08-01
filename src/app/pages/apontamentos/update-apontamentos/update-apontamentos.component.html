@@ -1,0 +1,74 @@
+<mat-toolbar class="barraFerramenta">
+    <span class="barraFerramentaTexto" *ngIf="!editar">Atualizar Cadsatro</span>
+    <span class="barraFerramentaTexto" *ngIf="editar">Editar</span>
+  </mat-toolbar>
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" >
+  <mat-card class="tabelaCadastrar" >
+  <div >
+      <!---p-table id="tabelaempresa" [value]="listaempresa"-->
+      <!--tr>
+          <mat-form-field class="inserirCadastrar">
+            <input  matInput name="oidempresa" placeholder="ID da Empresa" formControlName="oidempresa" [(ngModel)]="empresa.oidempresa">
+            <mat-error *ngIf="formGroup.get('oidempresa').invalid">
+             ID da Empresa <strong>obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+        </tr-->
+        <div>
+            <mat-form-field class="inserirCadastrar">
+              <mat-select placeholder="Selecionar nome da atividade" formControlName="nmRecursos" [(ngModel)]="apontamentos.nmRecursos">
+                <mat-option *ngFor="let apontamentos of listaAtividades" [value]="apontamentos.nmRecursos">
+                  {{apontamentos.nmRecursos}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+         <tr>
+          <mat-form-field class="inserirCadastrar">
+            <input  matInput placeholder="Data de Apontamento*" type="date"   formControlName="dtapontamento" [(ngModel)]="apontamentos.dtapontamento"  >
+            <mat-error *ngIf="formGroup.get('dtapontamento').invalid">
+             A data de apontamento é <strong>obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+        </tr>
+        <tr>
+          <mat-form-field class="inserirCadastrar">
+            <input  matInput placeholder="Data de Lançamento"  type="date" formControlName="dtlancamento" [(ngModel)]="apontamentos.dtlancamento" >
+            <mat-error *ngIf="formGroup.get('dtlancamento').invalid">
+                Data de Lançamento é <strong>obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+        </tr>
+        <tr>
+          <mat-form-field class="inserirCadastrar">
+            <input matInput placeholder="Numero de horas Apontadas" formControlName="nrapontamento" minlength="2" time-mask="hh" [(ngModel)]="apontamentos.nrapontamento">
+            <mat-error *ngIf="formGroup.get('nrapontamento').errors?.required">
+            Numero de horas de Apontamento <strong>obrigatório</strong>
+            </mat-error>
+            <mat-error *ngIf="formGroup.get('nrapontamento').errors?.horasErro">
+              Numero de horas acima da atividade
+            </mat-error>
+            <mat-error *ngIf="formGroup.get('nrapontamento').errors?.minlength">
+              Precisa de no mínimo 2 casas decimais
+            </mat-error>
+          </mat-form-field>
+        </tr>
+          <tr>
+              <mat-form-field class="inserirCadastrar">
+                <input matInput placeholder="Valor da Atividade" formControlName="vratividade" [(ngModel)]="apontamentos.vratividade" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
+                <mat-error *ngIf="formGroup.get('vratividade').invalid">
+                O valor da atividade é <strong>obrigatório</strong>
+                </mat-error>
+              </mat-form-field>
+            </tr>
+  </div>
+       <button mat-raised-button class="botaoSalvar">Salvar
+        <mat-icon class="mat-18">save</mat-icon>
+       </button>
+       <button mat-raised-button [mat-dialog-close] class="botaoSair" >Sair
+      </button>
+  </mat-card>
+  
+  </form>
+
+  
